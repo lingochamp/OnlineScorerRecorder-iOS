@@ -181,6 +181,7 @@ static NSURL *_socketURL;
     self.recordCalled = true;
     
     self.recordURL = fileURL;
+    [self openAudioSocket:NO];
     self.audioReader = [[EZAudioReader alloc] init];
     self.audioReader.delegate = self;
     [self.audioReader recordToFileURL:fileURL fileType:fileType];
@@ -401,6 +402,5 @@ static NSURL *_socketURL;
         [self.delegate onlineScorerDidFinishRecording:self];
     }
 }
-
 
 @end
