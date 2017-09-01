@@ -172,14 +172,18 @@ static NSURL *_socketURL;
 
 - (void)recordToURL:(NSURL * _Nonnull)fileURL
 {
+    [self recordToURL:fileURL fileType:kAudioFileM4AType];
+}
+
+- (void)recordToURL:(NSURL * _Nonnull)fileURL fileType:(AudioFileTypeID)fileType
+{
     if (self.recordCalled) return;
     self.recordCalled = true;
     
     self.recordURL = fileURL;
-    [self openAudioSocket:NO];
     self.audioReader = [[EZAudioReader alloc] init];
     self.audioReader.delegate = self;
-    [self.audioReader recordToFileURL:fileURL];
+    [self.audioReader recordToFileURL:fileURL fileType:fileType];
 }
 
 - (void)stopRecording
